@@ -11,19 +11,25 @@ public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login","/index","/error").not().authenticated()
-                //.anyRequest()
-                //.authenticated()
+                .antMatchers("/login","/error","/register")
+                .not()
+                .authenticated()
+                .antMatchers("/js/**", "/css/**","/images/**", "/fonts/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/index", true)
                 .failureForwardUrl("/login-error")
-                .permitAll(true)
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/login")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/index")
-                .permitAll();
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/login");
 
     }
 }

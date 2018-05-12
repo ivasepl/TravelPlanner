@@ -1,0 +1,123 @@
+
+@font-face {
+    font-family: 'homerun-font';
+    src: url('../fonts/homerun.regular.ttf'); 
+}
+
+@font-face{
+    font-family: 'pe-icon';
+    src: url('../fonts/Pe-icon-7-stroke.ttf');
+}
+
+.title-style{
+    top: 10%;
+    left: 50%;
+    right: 50%;
+}
+.title-style h1{
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'homerun-font';
+    font-size: 80px;
+    color: white;
+    
+    -webkit-transform: rotate(-5deg);
+    -moz-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+}
+.title-style h1 a{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    
+}
+
+body {
+    background-image: url("../images/Airplane.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family:  sans-serif;
+}
+.login-box{
+    width: 320px;
+    height: 470px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 10px 30px;   
+    border-radius: 20px;
+}
+
+.login-box h1{
+    margin: 0;
+    padding: 0 0 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'pe-icon';
+}
+
+.login-box p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    font-family: 'pe-icon';
+    font-size: 15px;
+}
+
+.login-box input{
+    width:  100%;
+    margin-bottom: 7px;
+    font-family: 'pe-icon';
+}
+
+.login-box input[type="text"], input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 30px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.login-box input[type="submit"], input[type="button"]{
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #FA8E4A;
+    color: #fff;
+    font-size:  16px;
+    border-radius: 20px;
+}
+
+.login-box input[type="submit"]:hover{
+   cursor: pointer;
+    background: #21C1B6;
+    transition: 1s;
+}
+
+.login-box input[type="text"]:focus, input[type="password"]:focus{
+    color: #FA8E4A;
+    font-size: 18px;
+    border-bottom: 3px solid #FA8E4A;
+    transition: 0.1s;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'pe-icon';
+}
+
+.login-box a:hover{
+    cursor: pointer;
+    color: #21C1B6;
+    
+}

@@ -12,20 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @RequestMapping (method=RequestMethod.GET, value="/index")
-    public String home(){
-        return "index";
-    }
 
     @RequestMapping (method=RequestMethod.GET, value="/")
     public String root(){
 
-        return "index";
+        return "login";
     }
 
     @RequestMapping (method=RequestMethod.GET, value="/login")
     public String login(){
         return "login";
+    }
+
+    @RequestMapping (method=RequestMethod.GET, value="/register")
+    public String register(){
+        return "register";
+    }
+    @RequestMapping (method = RequestMethod.POST, value= "/login" ,params = "signup")
+    public String registration(){
+        return "redirect:/register";
     }
 
 }
