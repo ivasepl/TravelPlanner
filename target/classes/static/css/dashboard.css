@@ -1,0 +1,297 @@
+
+@font-face {
+    font-family: 'homerun-font';
+    src: url('../fonts/homerun.regular.ttf'); 
+}
+
+@font-face{
+    font-family: 'pe-icon';
+    src: url('../fonts/Pe-icon-7-stroke.ttf?d7yf1v') format('truetype');
+    font-weight: normal;
+	font-style: normal; 
+}
+
+@font-face{
+    font-family: 'exo2';
+    src: url('../fonts/Exo2-RegularExpanded.otf');
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'exo2';
+    background-color: #E5E9EC;
+
+}
+
+html{
+    padding: 0;
+    margin: 0;
+}
+
+.expanded .sidebar-box{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    background-color: #252024;
+    color: #6E6B72;
+}
+
+.contracted .sidebar-box{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 85px;
+    height: 100%;
+    background-color: #252024;
+    color: #6E6B72;
+    font-size: 0;
+}
+
+.expanded .sidebar-box-header{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #FAA71B;
+}
+
+.expanded .sidebar-box-header i{
+   font-size: 0;
+}
+
+.contracted .sidebar-box-header i{
+    padding-top: 10px;
+    padding-left: 25px;
+    font-size: 40px;
+    color: white;
+}
+
+.expanded .sidebar-box-header i{
+}
+
+.contracted .sidebar-box-header{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #FAA71B;
+}
+
+.contracted .sidebar-box-header h1{
+}
+
+.expanded .sidebar-box-header h1{
+    top: 10px;
+    left: 30px;
+    margin: 0;
+    padding: 0;
+    height: 50px;
+    position: relative;
+    font-family: 'homerun-font';
+    font-size: 50px;
+    color: white;
+}
+
+.sidebar-box-body{
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-options{
+    margin-top: 25px;
+    padding: 0;
+     width: 100%;
+    
+}
+
+.contracted .sidebar-options{
+    margin-top: 25px;
+    padding: 0;
+     width: 100%;
+    
+}
+
+.expanded .sidebar-options a{
+    display: block;
+    padding: 5px 30px;
+    height: 50px;
+    line-height: 40px;  
+}
+
+.contracted .sidebar-options a{
+    display: block;
+    padding: 5px 20px;
+    height: 50px;
+    line-height: 40px;  
+}
+
+
+.expanded .sidebar-options a:hover{
+    color: #FAA71B;
+    cursor: pointer;
+    padding: 5px 40px;
+    transition: 0.5s;
+    
+}
+
+.contracted .sidebar-options a:hover{
+    color: #FAA71B;
+    cursor: pointer;
+    padding: 5px 25px;
+    transition: 0.5s;
+    
+}
+
+.expanded .sidebar-options a.selected{
+    color: #FAA71B;
+    padding: 5px 40px;
+    
+}
+
+.contracted .sidebar-options a.selected{
+    color: #FAA71B;
+    padding: 5px 25px;
+    
+}
+
+
+.expanded .sidebar-options .fa{
+    margin-right: 5px;
+    display: inline-block;
+    width: 30px;
+    font-size: 20px;
+}
+
+.expanded .sidebar-options .fa-home, .fa-user{
+    font-size: 22px;
+}
+
+.contracted .sidebar-options .fa{
+    margin-right: 5px;
+    display: inline-block;
+    width: 30px;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.contracted .sidebar-options .fa-home, .fa-user{
+    font-size: 22px;
+}
+
+ .arrLeft {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-right:10px solid #E5E9EC;
+    position: absolute;
+    right: 0px;
+    margin-top: 10px;
+    display: inline-block;
+
+}
+
+.fa-bars{
+    color: #FAA71B;
+    font-size: 30px;
+}
+
+.menu-icon{
+    position: absolute;
+    padding-top: 13px;
+    left: 10px;
+    height: 50px;
+    width: 50px;
+}
+
+.fa-bars:hover{
+    color: #FAA71B;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.expanded .header{
+    background-color: white;
+    right: 0;
+    height: 60px;
+    left: 250px;
+    border-bottom: 1px solid #D3D2D7;
+    position: absolute;
+}
+
+.contracted .header{
+    background-color: white;
+    right: 0;
+    height: 60px;
+    left: 85px;
+    border-bottom: 1px solid #D3D2D7;
+    position: absolute;
+    
+}
+
+.contracted .dashboard-body {
+    left: 105px;
+    top: 80px;
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid  #D3D2D7;
+    border-radius: 10px;
+}
+
+.expanded .dashboard-body {
+    left: 275px;
+    top: 80px;
+    bottom: 20px;
+    right: 20px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid  #D3D2D7;
+    border-radius: 10px;
+}
+
+.header-text{
+    font-size: 30px;
+    left: 50px;
+    padding-top: 10px;
+    position: absolute;
+}
+
+.user-icon{
+    margin-top: 5px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    position: absolute; 
+}
+
+.user-icon-image{
+    height: 50px;
+    width: 50px;
+    border-radius: 30px ;
+    border: solid 1px #D3D2D7;
+    
+}
+
+.user-name{
+    padding-top: 20px;
+    width: 400px;
+    height: 50px;
+    right: 100px;
+    position: absolute;
+    
+}
+.user-name a{
+    float: right;
+    width: auto;
+    padding-right: 10px;
+    height: 50px;
+
+}
+

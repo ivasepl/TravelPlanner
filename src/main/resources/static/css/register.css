@@ -1,13 +1,19 @@
 
 @font-face {
     font-family: 'homerun-font';
-    src: url('../fonts/homerun.regular.ttf'); 
+    src: url('../fonts/homerun.regular.ttf');
 }
 
 @font-face{
     font-family: 'pe-icon';
     src: url('../fonts/Pe-icon-7-stroke.ttf');
 }
+
+@font-face{
+    font-family: 'exo2';
+    src: url('../fonts/Exo2-RegularExpanded.otf');
+}
+
 
 .title-style{
     top: 10%;
@@ -21,7 +27,7 @@
     font-family: 'homerun-font';
     font-size: 80px;
     color: white;
-    
+
     -webkit-transform: rotate(-5deg);
     -moz-transform: rotate(-5deg);
     -o-transform: rotate(-5deg);
@@ -30,7 +36,7 @@
     text-decoration: none;
     color: white;
     cursor: pointer;
-    
+
 }
 
 body {
@@ -49,7 +55,7 @@ body {
     position: absolute;
     transform: translate(-50%,-50%);
     box-sizing: border-box;
-    padding: 10px 30px;   
+    padding: 10px 30px;
     border-radius: 20px;
 }
 
@@ -58,14 +64,14 @@ body {
     padding: 0 0 10px;
     text-align: center;
     font-size: 25px;
-    font-family: 'pe-icon';
+    font-family: 'exo2';
 }
 
 .login-box p{
     margin: 0;
     padding: 0;
     font-weight: bold;
-    font-family: 'pe-icon';
+    font-family: 'exo2';
     font-size: 15px;
 }
 
@@ -94,10 +100,11 @@ body {
     color: #fff;
     font-size:  16px;
     border-radius: 20px;
+    font-family: "exo2";
 }
 
 .login-box input[type="submit"]:hover{
-   cursor: pointer;
+    cursor: pointer;
     background: #21C1B6;
     transition: 1s;
 }
@@ -109,15 +116,3 @@ body {
     transition: 0.1s;
 }
 
-.login-box a{
-    text-decoration: none;
-    font-size: 14px;
-    color: #fff;
-    font-family: 'pe-icon';
-}
-
-.login-box a:hover{
-    cursor: pointer;
-    color: #21C1B6;
-    
-}
