@@ -1,11 +1,15 @@
 package com.tp.jpa;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.tp.serializers.UsersEntitySerializer;
+
 import javax.persistence.*;
 import java.util.Set;
 
 /**
  * Created by Ivan on 22.4.2018..
  */
+@JsonSerialize(using = UsersEntitySerializer.class)
 @Entity
 @Table(name = "USERS")
 public class UsersEntity {
@@ -92,8 +96,8 @@ public class UsersEntity {
     }
 
     @Lob
-    @Column( name = "USERIMAGE", nullable = true)
-    private byte[] getUserImage(){return userImage; }
+    @Column( name = "USERIMAGE")
+    public byte[] getUserImage(){return userImage; }
 
     public void setUserImage(byte[] userImage) { this.userImage = userImage; }
 

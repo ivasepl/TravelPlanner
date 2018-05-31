@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
@@ -27,7 +28,7 @@ public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/error", "/register")
                 .not()
                 .authenticated()
-                .antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**")
+                .antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/api/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -40,7 +41,7 @@ public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedPage("/login")
                 .and()
-                .logout()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .clearAuthentication(true)
                 .logoutSuccessUrl("/login");
 

@@ -3,14 +3,10 @@ package com.tp.controller;
 import com.tp.jpa.UsersEntity;
 import com.tp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.validation.Valid;
 
 /**
  * Created by Ivan on 22.4.2018..

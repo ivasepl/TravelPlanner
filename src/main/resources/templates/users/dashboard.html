@@ -5,28 +5,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" th:href="@{../css/dashboard.css}">
-    <link rel="stylesheet" type="text/css"  th:href="@{../css/table.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{../css/table.css}">
+    <script th:src="@{../js/dhtmlxscheduler.js}" type="text/javascript"></script>
+    <link rel="stylesheet" th:href="@{../css/dhtmlxscheduler_flat.css}" type="text/css">
     <script src="../js/dashboard.js"></script>
     <title>Title</title>
 </head>
-<body class = "expanded">
-   
+<body class="expanded">
+
 <div class="sidebar-box">
     <div class="sidebar-box-header">
-        <h1><i class = "fa fa-plane"></i>Travel Planner</h1>
+        <h1><i class="fa fa-plane"></i>Travel Planner</h1>
     </div>
     <div class="sidebar-box-body">
         <nav class="sidebar-options">
-            <a class="selected"><i class="fa fa-home"></i><div class="arrLeft"></div>DASHBOARD</a>
-            <a ><i class="fa fa-user"></i>PROFILE</a>
-            <a ><i class="fa fa-calendar"></i>SCHEDULE</a>
-            <a ><i class="fa fa-map"></i>MAP</a>
-            <a ><i class="fa fa-bar-chart"></i>STATISTICS</a> 
+            <a class="selected"><i class="fa fa-home"></i>
+                <div class="arrLeft"></div>
+                DASHBOARD</a>
+            <a><i class="fa fa-user"></i>PROFILE</a>
+            <a><i class="fa fa-calendar"></i>SCHEDULE</a>
+            <a><i class="fa fa-map"></i>MAP</a>
+            <a><i class="fa fa-bar-chart"></i>STATISTICS</a>
+            <a th:href="@{/logout}"><i class="fa fa-sign-out"></i>LOGOUT</a>
         </nav>
     </div>
 </div>
-<div class = "header">
-    <div class = "menu-icon">
+<div class="header">
+    <div class="menu-icon">
         <a class="fa fa-bars"></a>
     </div>
     <div class="header-text">
@@ -34,122 +39,11 @@
     </div>
     <div class="user-name"></div>
     <div class="user-icon"></div>
- </div>
-    
-<div class = "dashboard-body">
-    <div class="table-container">
-     <table class="table">
-         <thead>
-         
-                <tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Email</th>
-                    <th>Adresa</th>
-                    <th>Ime</th>
-                    <th>Ime</th>
-                    <th>Action</th>
-                </tr>
-             </thead>
-        <tbody>
-         
-         
-        <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-          <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-          <tr>
-            <td>Ivan</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td>Šepl</td>
-            <td><i class="fa fa-edit"></i><i class="fa fa-trash"></i></td>
-        </tr>
-        </tbody>
-    </table>
-    
-    </div>
-   
-    </div>
+</div>
+
+<div class="dashboard-body">
+
+</div>
 
 </body>
 </html>

@@ -119,14 +119,18 @@ html{
     display: block;
     padding: 5px 30px;
     height: 50px;
-    line-height: 40px;  
+    line-height: 40px;
+    text-decoration: none;
+    color: #6E6B72;
 }
 
 .contracted .sidebar-options a{
     display: block;
     padding: 5px 20px;
     height: 50px;
-    line-height: 40px;  
+    line-height: 40px;
+    text-decoration: none;
+    color: #6E6B72;
 }
 
 
@@ -166,7 +170,7 @@ html{
     font-size: 20px;
 }
 
-.expanded .sidebar-options .fa-home, .fa-user{
+.expanded .sidebar-options .fa-home, .fa-user, fa-sign-out{
     font-size: 22px;
 }
 
@@ -243,6 +247,7 @@ html{
     background-color: white;
     border: 1px solid  #D3D2D7;
     border-radius: 10px;
+    padding: 15px 15px;
 }
 
 .expanded .dashboard-body {
@@ -254,6 +259,7 @@ html{
     background-color: white;
     border: 1px solid  #D3D2D7;
     border-radius: 10px;
+    padding: 15px 15px;
 }
 
 .header-text{
@@ -293,5 +299,9 @@ html{
     padding-right: 10px;
     height: 50px;
 
+}
+.scheduler-box{
+    width: 100%;
+    height: 100%;
 }
 
