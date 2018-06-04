@@ -25,7 +25,10 @@ public class UsersEntitySerializer extends JsonSerializer<UsersEntity> {
             jsonGenerator.writeStringField("userImage", null);
         }
         jsonGenerator.writeBooleanField("active",usersEntity.isActive());
+        jsonGenerator.writeStringField("description",usersEntity.getDescription());
         jsonGenerator.writeEndObject();
 
     }
+
+
 }

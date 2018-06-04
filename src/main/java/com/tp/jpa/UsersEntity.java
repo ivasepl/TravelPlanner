@@ -22,6 +22,7 @@ public class UsersEntity {
     private String address;
     private boolean active;
     private byte[] userImage;
+    private String description;
 
 
     @Id
@@ -107,4 +108,13 @@ public class UsersEntity {
 
     public void setActive(boolean active) {this.active = active;}
 
+    @Basic
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

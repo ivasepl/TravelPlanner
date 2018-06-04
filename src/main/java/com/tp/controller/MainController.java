@@ -67,6 +67,10 @@ public class MainController {
         return "login-error";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/users/profile")
+    public String profile() {
+        return "users/profile";
+    }
 
 }
 

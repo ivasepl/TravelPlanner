@@ -1,14 +1,9 @@
+@import 'profile.css';
+@import 'tools.css';
 
 @font-face {
     font-family: 'homerun-font';
     src: url('../fonts/homerun.regular.ttf'); 
-}
-
-@font-face{
-    font-family: 'pe-icon';
-    src: url('../fonts/Pe-icon-7-stroke.ttf?d7yf1v') format('truetype');
-    font-weight: normal;
-	font-style: normal; 
 }
 
 @font-face{
@@ -247,7 +242,7 @@ html{
     background-color: white;
     border: 1px solid  #D3D2D7;
     border-radius: 10px;
-    padding: 15px 15px;
+    padding: 10px 10px;
 }
 
 .expanded .dashboard-body {
@@ -259,7 +254,7 @@ html{
     background-color: white;
     border: 1px solid  #D3D2D7;
     border-radius: 10px;
-    padding: 15px 15px;
+    padding: 10px 10px;
 }
 
 .header-text{
@@ -304,4 +299,82 @@ html{
     width: 100%;
     height: 100%;
 }
+
+.timer-box{
+    display: block;
+    width: 230px;
+    height: 120px;
+    background-color: orange;
+    border-radius: 7px;
+    position: absolute;
+    right: 40px;
+    top: 50px;
+    color: white;
+}
+
+.time-box{
+    padding-top: 10px;
+
+    font-size: 50px;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+.date-box{
+    padding-top: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.upcoming-events{
+
+    position: absolute;
+    display: inline-block;
+    right: 40px;
+    top: 200px;
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.upcoming-events-title{
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: orange;
+
+}
+
+.next-event-box{
+    width: 230px;
+    height: 300px;
+    border-radius: 10px;
+    border: 1px solid darkgrey;
+    float: left;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.next-event-upper{
+    padding-left: 10px;
+    font-size: 15px;
+    width: auto;
+    height: 225px;
+    color: darkgrey;
+    box-sizing: border-box;
+    border-bottom: 1px solid darkgrey;
+}
+
+.next-event-bottom{
+    color: white;
+    font-size: 30px;
+    width: auto;
+    height: 75px;
+    text-align: center;
+    background-color: orange;
+
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
 
