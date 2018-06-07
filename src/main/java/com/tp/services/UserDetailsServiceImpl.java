@@ -24,11 +24,15 @@ public class UserDetailsServiceImpl implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException
     {
+
+        if(username.isEmpty()){
+            throw new UsernameNotFoundException("Username cannot be empty!");
+        }
         final UsersEntity user = this.userService.findByUsername(username);
         final List<GrantedAuthority> grantedAuths = new ArrayList<>();
         if (user == null)
         {
-            throw new UsernameNotFoundException("Not found " + username);
+            throw new UsernameNotFoundException("Invalid username or password!");
         }
         else
         {

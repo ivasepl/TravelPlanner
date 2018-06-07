@@ -16,10 +16,11 @@
         <input type="text" id="username" name="username" placeholder="Enter username">
         <p>Password</p>
         <input type="password" id="password" name="password" placeholder="Enter password">
+        <div class = "error-box" th:if="${errorMessage != null}"><a class="error" th:text="${errorMessage}"></a></div>
         <input type="Submit" name="Submit" value="Login">
     </form>
     <div class = "signup-button-div">
-        <div class="signup-button-positioning-div">
+        <div class="signup-button-positioning-div" >
             <a th:href="@{/register}" class="signup-button" name="signup">Sign Up</a>
         </div>
     </div>

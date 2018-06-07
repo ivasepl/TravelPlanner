@@ -138,8 +138,24 @@ body {
     text-decoration: none;
     color: white;
     font-family: "exo2";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .signup-button-positioning-div{
     padding-top: 8px;
 }
+
+.error{
+    color: red;
+    text-align: center;
+}
+
+.error-box{
+    height: 30px;
+    text-align: center;
+    width: 100%
+
+}
+

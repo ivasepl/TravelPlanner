@@ -24,9 +24,6 @@ public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
     }
     @Bean
     public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
-//        StrictHttpFirewall firewall = new StrictHttpFirewall();
-//        firewall.setAllowUrlEncodedSlash(true);
-//        firewall.setAllowSemicolon(true);
         return new DefaultHttpFirewall();
     }
 
@@ -36,7 +33,7 @@ public class SecurityLoginConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/error", "/register")
+                .antMatchers("/login", "/error", "/register", "/registration","/register-error", "/register-error-input")
                 .not()
                 .authenticated()
                 .antMatchers("/js/**", "/css/**", "/images/**", "/fonts/**", "/api/**")

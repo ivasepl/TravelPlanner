@@ -116,3 +116,12 @@ body {
     transition: 0.1s;
 }
 
+.error{
+    color: red;
+    text-align: center;
+}
+
+.error-box{
+    text-align: center;
+    width: 100%;
+}
