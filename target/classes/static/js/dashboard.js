@@ -19,6 +19,7 @@ $(document).ready(function () {
             $(".user-icon").prepend("<img class='user-icon-image' src='data:image/png;base64," + value.userImage + "'/>");
         }
     })
+    dashboardPageLoad();
 
 
     $("selected").append("<div class='arrLeft'></div>");
@@ -27,10 +28,12 @@ $(document).ready(function () {
         $(".dashboard-body").empty();
         var optionName = $(this).text();
         $(".header-text").text(optionName);
-        if (optionName == "SCHEDULE") {
+        if (optionName.indexOf("SCHEDULE") >=0) {
             myScheduler();
-        }else if(optionName == "PROFILE"){
+        }else if(optionName.indexOf("PROFILE") >=0){
             profileLoad();
+        }else if(optionName.indexOf("DASHBOARD") >=0){
+            dashboardPageLoad();
         }
         $(".sidebar-box-body nav a").removeClass();
         $('.arrLeft').remove();
@@ -129,7 +132,7 @@ $(document).ready(function () {
         }else{
             minutes =  dt.getMinutes()
         }
-        $("body").append("<div class='timer-box'>"+
+        $(".dashboard-page-box").append("<div class='timer-box'>"+
             " <div class ='time-box'>"+
             dt.getHours()+ ":" +minutes + ":" + seconds +
             "</div>"+
@@ -294,6 +297,16 @@ $(document).ready(function () {
 
 
 
+    }
+
+
+
+    function dashboardPageLoad(){
+
+        $.get("dashboard-page", function(data) {
+            $(".dashboard-body").html(data)
+            dateTimeBox();
+        });
     }
 
 

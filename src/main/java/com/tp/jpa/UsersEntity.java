@@ -23,11 +23,11 @@ public class UsersEntity {
     private boolean active;
     private byte[] userImage;
     private String description;
-
+    private Set<TripEntity> trips;
 
     @Id
     @Column(name = "USER_ID")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getUserId() {
         return userId;
     }
@@ -97,16 +97,24 @@ public class UsersEntity {
     }
 
     @Lob
-    @Column( name = "USERIMAGE")
-    public byte[] getUserImage(){return userImage; }
+    @Column(name = "USERIMAGE")
+    public byte[] getUserImage() {
+        return userImage;
+    }
 
-    public void setUserImage(byte[] userImage) { this.userImage = userImage; }
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
+    }
 
     @Basic
     @Column(name = "ACTIVE")
-    public boolean isActive() { return active; }
+    public boolean isActive() {
+        return active;
+    }
 
-    public void setActive(boolean active) {this.active = active;}
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     @Basic
     @Column(name = "DESCRIPTION")
@@ -116,5 +124,15 @@ public class UsersEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "USERTRIPS", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "TRIP_ID")})
+    public Set<TripEntity> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Set<TripEntity> trips) {
+        this.trips = trips;
     }
 }

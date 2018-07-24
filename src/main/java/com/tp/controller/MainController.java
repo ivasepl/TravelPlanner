@@ -89,5 +89,9 @@ public class MainController {
         return "users/profile";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/users/dashboard-page")
+    public String dashboardPage() {
+        return "users/dashboard-page";
+    }
 }
 
