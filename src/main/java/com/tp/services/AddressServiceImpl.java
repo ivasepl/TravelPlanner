@@ -5,7 +5,7 @@ import com.tp.repositories.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("addressService")
+@Service
 public class AddressServiceImpl implements AddressService {
 
     @Autowired
@@ -17,7 +17,17 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void addAddress(AddressEntity addressEntity) {
+    public AddressEntity findByAddressName(String name) {
+        return addressRepository.findByAddress(name);
+    }
 
+    @Override
+    public void addAddress(AddressEntity addressEntity) {
+        addressRepository.save(addressEntity);
+    }
+
+    @Override
+    public void updateAddress(AddressEntity addressEntity) {
+        addressRepository.save(addressEntity);
     }
 }

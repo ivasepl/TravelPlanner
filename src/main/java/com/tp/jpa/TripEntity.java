@@ -9,7 +9,7 @@ import java.util.Set;
 public class TripEntity {
 
     private int tripId;
-    private int name;
+    private String name;
     private String type;
     private Timestamp dateFrom;
     private Timestamp dateTo;
@@ -30,11 +30,11 @@ public class TripEntity {
 
     @Basic
     @Column(name = "NAME")
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
