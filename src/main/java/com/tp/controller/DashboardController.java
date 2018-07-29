@@ -3,6 +3,8 @@ package com.tp.controller;
 import com.tp.jpa.AddressEntity;
 import com.tp.jpa.TripEntity;
 import com.tp.jpa.UsersEntity;
+import com.tp.models.EventModel;
+import com.tp.models.LocationsModel;
 import com.tp.services.GoogleApiService;
 import com.tp.services.TripService;
 import com.tp.services.UserService;
@@ -21,10 +23,7 @@ import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 @RestController
@@ -91,25 +90,105 @@ public class DashboardController {
         trip.setType(type);
         AddressEntity addressEntity = apiService.getGeolocation(address, trip);
         if (addressEntity != null) {
-            if(trip.getAddress() == null){
-                Set addreSet = new HashSet();
-                addreSet.add(addressEntity);
-                trip.setAddress(addreSet);
-            }else{
+            if (trip.getAddress() == null) {
+                Set addressSet = new HashSet();
+                addressSet.add(addressEntity);
+                trip.setAddress(addressSet);
+            } else {
                 trip.getAddress().add(addressEntity);
             }
-
-         //   trip.getUser().add(usersEntity);
+            if (trip.getUser() == null) {
+                Set userSet = new HashSet();
+                // userSet.add(usersEntity);
+                trip.setUser(userSet);
+            } else {
+                //   trip.getUser().add(usersEntity);
+            }
             tripService.saveTrip(trip);
-           /* usersEntity.getTrips().add(trip); //also add check ig getTrips != null
+/*            if(usersEntity.getTrips() == null){
+                Set tripSet = new HashSet();
+                tripSet.add(trip);
+                usersEntity.setTrips(tripSet);
+            }else{
+                usersEntity.getTrips().add(trip);
+            }
             userService.updateUser(usersEntity);*/
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
-
     }
 
+    @RequestMapping("api/update_trip")
+    public ResponseEntity updateTrip(@RequestBody String data, Principal user) throws ParseException {
+        Map<String, Object> json = JsonParserFactory.getJsonParser().parseMap(data);
+        int addressId = Integer.parseInt(json.get("id").toString());
+        if(addressId == 0){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        TripEntity trip =  tripService.findByTripId(addressId);
+        if(trip == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        String address = json.get("address").toString();
+        String tripName = json.get("name").toString();
+        String type = json.get("type").toString();
+        Timestamp dateFrom = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(json.get("dateFrom").toString()).getTime());
+        Timestamp dateTo = new Timestamp(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(json.get("dateTo").toString()).getTime());
+        String details = json.get("details").toString();
+        trip.setName(tripName);
+        trip.setDateFrom(dateFrom);
+        trip.setDateTo(dateTo);
+        trip.setDetails(details);
+        trip.setType(type);
+        AddressEntity addressEntity = apiService.getGeolocation(address, trip);
+        if(addressEntity != null && !trip.getAddress().contains(addressEntity)){
+            Set addressSet = new HashSet();
+            addressSet.add(addressEntity);
+            trip.setAddress(addressSet);
+        }
+        tripService.updateTrip(trip);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
+    @RequestMapping("/api/locations")
+    public ResponseEntity getLocations(Principal user){
+        List<LocationsModel> locations = new ArrayList<>();
+        UsersEntity usersEntity = userService.findByUsername(user.getName());
+        Set<TripEntity> trips = usersEntity.getTrips();
+        if(trips != null){
+            for (TripEntity trip : trips) {
+                LocationsModel locationsModel = new LocationsModel();
+                locationsModel.setTripId(trip.getTripId());
+                locationsModel.setTripName(trip.getName());
+                for (AddressEntity addressEntity : trip.getAddress()) {
+                    locationsModel.setLat(addressEntity.getLatitude());
+                    locationsModel.setLng(addressEntity.getLangitude());
+                }
+                locationsModel.setDetails(trip.getDetails());
+                locations.add(locationsModel);
+            }
+        }
+        return new ResponseEntity<>(locations,HttpStatus.OK);
+    }
+
+    @RequestMapping("/api/events")
+    public ResponseEntity getEvents(Principal user){
+        List<EventModel> events = new ArrayList<>();
+        int eventCounter = 1;
+        UsersEntity usersEntity = userService.findByUsername(user.getName());
+        Set<TripEntity> trips = usersEntity.getTrips();
+        if(trips != null){
+            for (TripEntity trip : trips) {
+                EventModel eventModel = new EventModel();
+                eventModel.setEventId(eventCounter);
+                eventModel.setEventName(trip.getName());
+                eventModel.setDateFrom(trip.getDateFrom());
+                eventModel.setDateTo(trip.getDateTo());
+                eventCounter++;
+                events.add(eventModel);
+            }
+        }
+        return new ResponseEntity<>(events,HttpStatus.OK);
+    }
 }
