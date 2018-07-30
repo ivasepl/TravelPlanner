@@ -93,5 +93,10 @@ public class MainController {
     public String dashboardPage() {
         return "users/dashboard-page";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/map")
+    public String map() {
+        return "users/map";
+    }
 }
 

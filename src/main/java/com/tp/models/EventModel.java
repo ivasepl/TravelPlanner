@@ -1,42 +1,52 @@
 package com.tp.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class EventModel {
-    private int eventId;
-    private String eventName;
-    private Timestamp dateFrom;
-    private Timestamp dateTo;
+    private int id;
+    private String text;
+    private String start_date;
+    private String end_date;
+    private String color;
 
-    public int getEventId() {
-        return eventId;
+    public int getId() {
+        return id;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getText() {
+        return text;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public Timestamp getDateFrom() {
-        return dateFrom;
+    public String getStart_date() {
+        return start_date;
     }
 
-    public void setDateFrom(Timestamp dateFrom) {
-        this.dateFrom = dateFrom;
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
     }
 
-    public Timestamp getDateTo() {
-        return dateTo;
+    public String getEnd_date() {
+        return end_date;
     }
 
-    public void setDateTo(Timestamp dateTo) {
-        this.dateTo = dateTo;
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

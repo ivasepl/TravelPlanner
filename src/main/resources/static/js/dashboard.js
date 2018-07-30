@@ -34,6 +34,8 @@ $(document).ready(function () {
             profileLoad();
         }else if(optionName.indexOf("DASHBOARD") >=0){
             dashboardPageLoad();
+        }else if(optionName.indexOf("MAP") >=0){
+            googleMapsPageLoad();
         }
         $(".sidebar-box-body nav a").removeClass();
         $('.arrLeft').remove();
@@ -73,30 +75,15 @@ $(document).ready(function () {
 
             });
 
-            var events = [
-                {
-                    id: 1,
-                    text: "Meeting",
-                    start_date: "04/11/2018 14:00",
-                    end_date: "04/11/2018 17:00",
-                    color: "#FAA71B"
-                },
-                {
-                    id: 2,
-                    text: "Conference",
-                    start_date: "04/15/2018 12:00",
-                    end_date: "04/18/2018 19:00",
-                    color: "#FAA71B"
-                },
-                {
-                    id: 3,
-                    text: "Interview",
-                    start_date: "04/24/2018 09:00",
-                    end_date: "04/24/2018 10:00",
-                    color: "#FAA71B"
-                }
-            ];
-            scheduler.parse(events, 'json');
+            $.ajax({
+                url: "http://localhost:8080/api/events"
+            }).then(function (value) {
+                var events = value;
+                scheduler.parse(events, 'json');
+            })
+
+
+
 
         });
 
@@ -310,5 +297,55 @@ $(document).ready(function () {
     }
 
 
+
+    function googleMapsPageLoad(){
+        $.get("map", function(data) {
+            $(".dashboard-body").html(data);
+        });
+
+        $.ajax({
+            url: "http://localhost:8080/api/user_location"
+        }).then(function (value) {
+            $.each(JSON.parse(value), function(i,item){
+                var pos = {lat: item.lat, lng: item.lng};
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: 'Home',
+                    icon: customIcon({
+                        fillColor: '#0000FF'
+                    }),
+                });
+                map.setCenter(pos);
+                loadAllMarkers();
+            });
+        });
+    }
+
+    function loadAllMarkers(){
+        $.ajax({
+            url: "http://localhost:8080/api/locations"
+        }).then(function (value) {
+            $.each(value, function(i,item){
+                var pos = {lat: item.lat, lng: item.lng};
+                var marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: item.tripName
+                });
+            });
+        });
+    }
+
+    function customIcon (opts) {
+        return Object.assign({
+            path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+            fillColor: '#34495e',
+            fillOpacity: 1,
+            strokeColor: '#000',
+            strokeWeight: 2,
+            scale: 1,
+        }, opts);
+    }
 });
     

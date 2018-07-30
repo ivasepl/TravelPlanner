@@ -9,7 +9,6 @@ import com.tp.services.GoogleApiService;
 import com.tp.services.TripService;
 import com.tp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.Console;
 import java.security.Principal;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Logger;
 
 @RestController
 public class DashboardController {
@@ -123,11 +120,11 @@ public class DashboardController {
     public ResponseEntity updateTrip(@RequestBody String data, Principal user) throws ParseException {
         Map<String, Object> json = JsonParserFactory.getJsonParser().parseMap(data);
         int addressId = Integer.parseInt(json.get("id").toString());
-        if(addressId == 0){
+        if (addressId == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        TripEntity trip =  tripService.findByTripId(addressId);
-        if(trip == null){
+        TripEntity trip = tripService.findByTripId(addressId);
+        if (trip == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         String address = json.get("address").toString();
@@ -142,7 +139,7 @@ public class DashboardController {
         trip.setDetails(details);
         trip.setType(type);
         AddressEntity addressEntity = apiService.getGeolocation(address, trip);
-        if(addressEntity != null && !trip.getAddress().contains(addressEntity)){
+        if (addressEntity != null && !trip.getAddress().contains(addressEntity)) {
             Set addressSet = new HashSet();
             addressSet.add(addressEntity);
             trip.setAddress(addressSet);
@@ -152,11 +149,11 @@ public class DashboardController {
     }
 
     @RequestMapping("/api/locations")
-    public ResponseEntity getLocations(Principal user){
+    public ResponseEntity getLocations(Principal user) {
         List<LocationsModel> locations = new ArrayList<>();
         UsersEntity usersEntity = userService.findByUsername(user.getName());
         Set<TripEntity> trips = usersEntity.getTrips();
-        if(trips != null){
+        if (trips != null) {
             for (TripEntity trip : trips) {
                 LocationsModel locationsModel = new LocationsModel();
                 locationsModel.setTripId(trip.getTripId());
@@ -169,26 +166,39 @@ public class DashboardController {
                 locations.add(locationsModel);
             }
         }
-        return new ResponseEntity<>(locations,HttpStatus.OK);
+        return new ResponseEntity<>(locations, HttpStatus.OK);
     }
 
     @RequestMapping("/api/events")
-    public ResponseEntity getEvents(Principal user){
+    public ResponseEntity getEvents(Principal user) {
         List<EventModel> events = new ArrayList<>();
         int eventCounter = 1;
         UsersEntity usersEntity = userService.findByUsername(user.getName());
         Set<TripEntity> trips = usersEntity.getTrips();
-        if(trips != null){
+        if (trips != null) {
             for (TripEntity trip : trips) {
                 EventModel eventModel = new EventModel();
-                eventModel.setEventId(eventCounter);
-                eventModel.setEventName(trip.getName());
-                eventModel.setDateFrom(trip.getDateFrom());
-                eventModel.setDateTo(trip.getDateTo());
+                eventModel.setId(eventCounter);
+                eventModel.setText(trip.getName());
+                eventModel.setStart_date(new SimpleDateFormat("MM/dd/YYYY HH:mm").format(new Date(trip.getDateFrom().getTime())));
+                eventModel.setEnd_date(new SimpleDateFormat("MM/dd/YYYY HH:mm").format(new Date(trip.getDateTo().getTime())));
+                eventModel.setColor("#FAA71B");
                 eventCounter++;
                 events.add(eventModel);
             }
         }
-        return new ResponseEntity<>(events,HttpStatus.OK);
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @RequestMapping("/api/user_location")
+    public ResponseEntity getUserLocation(Principal user) {
+        if (user != null) {
+            UsersEntity usersEntity = userService.findByUsername(user.getName());
+            String result = apiService.getUserGeolocation(usersEntity);
+            if (result != null) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 }
