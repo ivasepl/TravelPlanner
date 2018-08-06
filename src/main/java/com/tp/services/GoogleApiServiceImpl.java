@@ -26,10 +26,14 @@ public class GoogleApiServiceImpl implements GoogleApiService {
     @Autowired
     private AddressService addressService;
 
+    @Autowired
+    private TripService tripService;
+
     @Override
     public AddressEntity getGeolocation(String address, TripEntity tripEntity) {
         AddressEntity addressEntity = addressService.findByAddressName(address);
         if (addressEntity != null) {
+            tripService.saveTrip(tripEntity);
             addressEntity.getTrip().add(tripEntity);
             addressService.updateAddress(addressEntity);
         } else {
@@ -43,6 +47,7 @@ public class GoogleApiServiceImpl implements GoogleApiService {
                 if (latNode != null && lngNode != null) {
                     addressEntity = new AddressEntity();
                     addressEntity.setAddress(address);
+                    addressEntity.getTrip().add(tripEntity);
                     if (addressEntity.getTrip() == null) {
                         Set set = new HashSet();
                         set.add(tripEntity);

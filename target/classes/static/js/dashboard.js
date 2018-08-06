@@ -1,3 +1,5 @@
+var notLoaded=false;
+var dashboardIsActive = false;
 $(document).ready(function () {
     var loggedUser;
     var firstName;
@@ -11,7 +13,6 @@ $(document).ready(function () {
         url: "http://localhost:8080/api/user"
     }).then(function (value) {
         loggedUser = value;
-        console.log("vrijednost: " + JSON.stringify(value));
         $(".user-name").prepend("<a>" + value.firstName + " " + value.lastName + "</a>");
         if (value.userImage == null) {
             $(".user-icon").prepend("<img class='user-icon-image' src='../images/default-avatar.png'/>");
@@ -20,11 +21,14 @@ $(document).ready(function () {
         }
     })
     dashboardPageLoad();
+    dashboardIsActive= true;
 
 
     $("selected").append("<div class='arrLeft'></div>");
 
     $(".sidebar-box-body nav a").click(function () {
+        dashboardIsActive = false;
+        $(".timer-box").remove();
         $(".dashboard-body").empty();
         var optionName = $(this).text();
         $(".header-text").text(optionName);
@@ -33,6 +37,7 @@ $(document).ready(function () {
         }else if(optionName.indexOf("PROFILE") >=0){
             profileLoad();
         }else if(optionName.indexOf("DASHBOARD") >=0){
+            dashboardIsActive = true;
             dashboardPageLoad();
         }else if(optionName.indexOf("MAP") >=0){
             googleMapsPageLoad();
@@ -90,18 +95,9 @@ $(document).ready(function () {
     }
 
 
-    function alert(message, error){
-        if(error){
-            $("body").append("<div class = 'alert-box alert-error'></div>");
-        }else{
-            $("body").append("<div class = 'alert-box alert-success'></div>");
-        }
-        $(".alert-box").append("<div class='alert-message'><a>"+message+"</a></div>");
-        $(".alert-box").delay(1000).fadeOut(1000);
-    }
-
     function dateTimeBox(){
         $(".timer-box").remove();
+        if(dashboardIsActive) {
         var monthNames = ["January", "February", "March", "April", "May","June", "July", "August", "September", "October", "November", "December" ];
         var dayNames = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var dt = new Date();
@@ -119,7 +115,7 @@ $(document).ready(function () {
         }else{
             minutes =  dt.getMinutes()
         }
-        $(".dashboard-page-box").append("<div class='timer-box'>"+
+        $(".dashboard-body").append("<div class='timer-box'>"+
             " <div class ='time-box'>"+
             dt.getHours()+ ":" +minutes + ":" + seconds +
             "</div>"+
@@ -127,7 +123,9 @@ $(document).ready(function () {
             dayNames[dt.getDay()]+", " + monthNames[dt.getMonth()]+ " " + dt.getDate() + ", " + dt.getFullYear()+
             "</div>"+
             "</div>");
-        setTimeout(dateTimeBox, 1000)
+
+            setTimeout(dateTimeBox, 1000)
+        }
     }
 
 
@@ -152,7 +150,6 @@ $(document).ready(function () {
                 $(".user-name").empty();
                 $(".user-name").prepend("<a>" + loggedUser.firstName + " " + loggedUser.lastName + "</a>");
                 if (loggedUser.userImage != null) {
-                    console.log(loggedUser.userImage);
                     $(".profile-image").attr('src','data:image/png;base64, '+ loggedUser.userImage);
                     $(".user-icon-image").attr('src','data:image/png;base64, '+ loggedUser.userImage);
                 } else {
@@ -273,7 +270,7 @@ $(document).ready(function () {
                         $('#description').val(description).prop('disabled',true);
                         $(".profile-image-box-bottom-name").html(firstName + " " + lastName);
                         $('.profile-image-box-bottom-description').html(description);
-                        $('.profile-form').append("<button id='profile-edit-button' type='button' class = 'profile-edit-button'><a><i class='fa fa-pencil'></i>Edit</a></button>");
+                        $('.profile-form').append("<button id='profile-edit-button' type='button' class = 'profile-edit-button'><a><i class='fa fa-edit'></i>Edit</a></button>");
                         loadEdit();
                     });
 
@@ -291,8 +288,48 @@ $(document).ready(function () {
     function dashboardPageLoad(){
 
         $.get("dashboard-page", function(data) {
-            $(".dashboard-body").html(data)
+            $(".dashboard-body").html(data);
             dateTimeBox();
+            loadTable();
+
+            $("#add-trip").click(function(){
+                $.get("dialog", function(data){
+                    $(data).appendTo("body") ;
+                    addEvent();
+                    $( "#addButton" ).click(function( event ) {
+                        var address = $("#address").val();
+                        var name = $("#name").val();
+                        var type = $("#type").val();
+                        var startDate = $("#startDate").val();
+                        var endDate = $("#endDate").val();
+                        var details = $("#details").val();
+                        var data = '{"address":"' + address +'","name":"' + name + '","type":"' + type+ '","dateFrom":"' +startDate+'","dateTo":"' +endDate+'","details":"' + details+ '"}';
+                        if(address == "" || name =="" || type =="" || startDate == "" || endDate=="" || details==""){
+                            alert("Fields cannot be empty!", true);
+                        }else{
+                            $.ajax({url : "http://localhost:8080/api/add_trip",
+                                type : "POST",
+                                data : data,
+                                contentType: 'application/json',
+                                success : function() {
+                                    $(".trip-dialog-box-container").remove();
+                                    alert("Trip sucessfully added", false);
+                                    //reload table
+                            },
+                            error : function(xhr, tStatus, err) {
+                                alert("Error!", true);
+                            }});
+
+
+                        }
+
+                    });
+
+
+
+                });
+
+            });
         });
     }
 
@@ -301,6 +338,13 @@ $(document).ready(function () {
     function googleMapsPageLoad(){
         $.get("map", function(data) {
             $(".dashboard-body").html(data);
+            if(notLoaded==false){
+                $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyDRDqTFg9XuqEG7jRhrZpIMFzYh6ZzJIWA&callback=myMap');
+                notLoaded = true;
+            }else{
+                myMap();
+            }
+
         });
 
         $.ajax({
@@ -319,12 +363,7 @@ $(document).ready(function () {
                 map.setCenter(pos);
                 loadAllMarkers();
             });
-
-
-
-
         });
-
     }
 
     function loadAllMarkers(){
@@ -352,5 +391,64 @@ $(document).ready(function () {
             scale: 1,
         }, opts);
     }
+
+
 });
-    
+
+
+function addEvent(){
+    $("#cancel").click(function() {
+        $(".trip-dialog-box-container").remove();
+    });
+}
+
+
+
+function update(id){
+    $.get("dialog-update", function(data){
+        $(data).appendTo("body") ;
+        addEvent();
+    });
+}
+
+function deleteTrip(id){
+    $.get("dialog-delete", function(data){
+        $(data).appendTo("body") ;
+        addEvent();
+    });
+}
+
+
+
+function alert(message, error){
+    if(error){
+        $("body").append("<div class = 'alert-box alert-error'></div>");
+    }else{
+        $("body").append("<div class = 'alert-box alert-success'></div>");
+    }
+    $(".alert-box").append("<div class='alert-message'><a>"+message+"</a></div>");
+    $(".alert-box").delay(1000).fadeOut(1000);
+}
+
+function loadTable(){
+    var data = "<table><thead><tr><th> Name </th><th> Address </th><th> Type</th><th> Start date</th><th> End date</th><th>Details</th><th> Action</th></tr></thead>";
+    data+= "<tbody>";
+    $.ajax({
+        url: "http://localhost:8080/api/user_trips"
+    }).then(function (value) {
+       console.log(value);
+       $.each(value, function (i, item) {
+           var address = item.address;
+           $.each(address,function(){
+               data+="<tr><td>"+item.name+"</td><td>"+this.address+"</td><td>"+item.type+"</td><td>"+item.dateFrom+"</td><td>"+item.dateTo+"</td><td>"+item.details+"</td><td> <a id=\""+item.tripId+"\" onclick=\"update("+item.tripId+")\"><i class=\"fa fa-pencil\"></i></a>\n" +
+                   "<a id=\""+item.tripId+"\" onclick=\"deleteTrip("+item.tripId+")\"><i class=\"fa fa-trash\"></i></a></td></tr>";
+           });
+
+       });
+
+        data += "</tbody></table>";
+        $(data).appendTo(".table-container");
+    });
+
+
+}

@@ -1,6 +1,6 @@
 .table-container {
     padding: 10px 10px;
-    height: 50%;
+    height: calc(100% - 160px);
 }
 table {
     display: flex;
@@ -16,7 +16,7 @@ table {
     background-color: #FAA71B;
 }
 table thead {
-    /* head takes the height it requires, 
+    /* head takes the height it requires,
     and it's not scaled when table is resized */
     flex: 0 0 auto;
     height: 50px;
@@ -33,7 +33,7 @@ table tbody {
 table tbody tr {
     width: 100%;
     border-top: 1px solid;
-    
+
 }
 table thead, table tbody tr {
     display: table;
@@ -41,12 +41,12 @@ table thead, table tbody tr {
 }
 
 .fa-trash{
-     font-size: 25px;
-    padding-left: 15px;
+    font-size: 25px;
+
     color: firebrick;
 }
 
-.fa-edit{
+.fa-pencil{
     font-size: 25px;
     padding: 10px;
     color: forestgreen;
@@ -56,7 +56,7 @@ table thead, table tbody tr {
     cursor: pointer;
 }
 
-.fa-edit:hover{
+.fa-pencil:hover{
     cursor: pointer;
 }
 
@@ -65,12 +65,55 @@ table thead, table tbody tr {
     width: 10px;
     padding-top: 5px;
 }
- 
+
 ::-webkit-scrollbar-track {
     border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-   background-color: #FAA71B; 
+    background-color: #FAA71B;
+}
+
+.dashboard-header{
+    width: 100%;
+    height: 140px;
+
+}
+
+.add-trip-button-container{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 170px;
+    height: 50px;
+
+}
+
+.add-trip-button{
+    width: 100%;
+    height: 100%;
+    background-color: #FAA71B;
+    border: 0;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+}
+
+.fa-plus{
+    font-size: 20px;
+    color: white;
+}
+
+.add-trip-button:hover{
+    cursor: pointer;
+}
+
+.statistic-container{
+    position: absolute;
+
+    width: calc(100% - 450px) ;
+    height: 130px;
+    top: 10px;
+    left: 190px;
 }

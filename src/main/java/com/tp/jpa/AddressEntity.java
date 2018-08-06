@@ -1,5 +1,7 @@
 package com.tp.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -54,6 +56,7 @@ public class AddressEntity {
         this.langitude = langitude;
     }
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "address")
     public Set<TripEntity> getTrip() {
         return trip;

@@ -98,5 +98,20 @@ public class MainController {
     public String map() {
         return "users/map";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/dialog")
+    public String dialog() {
+        return "users/dialog";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/dialog-update")
+    public String dialogUpdate() {
+        return "users/dialog-update";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/dialog-delete")
+    public String dialogDelete() {
+        return "users/dialog-delete";
+    }
 }
 

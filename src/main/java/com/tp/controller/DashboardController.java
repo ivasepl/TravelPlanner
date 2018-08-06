@@ -69,9 +69,9 @@ public class DashboardController {
 
     }
 
-    @RequestMapping("/api/add_trip")
+    @RequestMapping(value = "/api/add_trip", method=RequestMethod.POST)
     public ResponseEntity addTrip(@RequestBody String data, Principal user) throws ParseException {
-        //UsersEntity usersEntity = userService.findByUsername(user.getName());
+        UsersEntity usersEntity = userService.findByUsername(user.getName());
         Map<String, Object> json = JsonParserFactory.getJsonParser().parseMap(data);
         TripEntity trip = new TripEntity();
         String address = json.get("address").toString();
@@ -96,20 +96,20 @@ public class DashboardController {
             }
             if (trip.getUser() == null) {
                 Set userSet = new HashSet();
-                // userSet.add(usersEntity);
+                 userSet.add(usersEntity);
                 trip.setUser(userSet);
             } else {
-                //   trip.getUser().add(usersEntity);
+                   trip.getUser().add(usersEntity);
             }
-            tripService.saveTrip(trip);
-/*            if(usersEntity.getTrips() == null){
+            tripService.updateTrip(trip);
+            if(usersEntity.getTrips() == null){
                 Set tripSet = new HashSet();
                 tripSet.add(trip);
                 usersEntity.setTrips(tripSet);
             }else{
                 usersEntity.getTrips().add(trip);
             }
-            userService.updateUser(usersEntity);*/
+            userService.updateUser(usersEntity);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -198,6 +198,20 @@ public class DashboardController {
             if (result != null) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
             }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping("api/user_trips")
+    public ResponseEntity getUserTrips(Principal user){
+        if(user != null){
+            UsersEntity usersEntity = userService.findByUsername(user.getName());
+            Set<TripEntity> userTrips = usersEntity.getTrips();
+            List<TripEntity> trips = new ArrayList<>();
+            for (TripEntity userTrip : userTrips) {
+                trips.add(userTrip);
+            }
+            return new ResponseEntity<>(trips, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
