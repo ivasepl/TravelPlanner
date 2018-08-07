@@ -1,0 +1,210 @@
+.profile-box{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 15px 15px;
+    display: inline-block;
+
+}
+
+.profile-form-box{
+    height: 100%;
+    width: calc(100% - 330px);
+    float: left;
+    margin-left: 15px;
+    border: 1px solid #D3D2D7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.profile-form-box-title{
+    font-size: 30px;
+    text-align: left;
+    height: 40px;
+    background-color: #FAA71B;
+    color: white;
+    padding: 10px;
+}
+.profile-label{
+    display: inline-block;
+    width: 150px;
+}
+
+
+.profile-input{
+    font-family: "exo2";
+    width: 250px;
+    height: 35px;
+    border: none;
+    margin: 10px;
+}
+
+.profile-form{
+    width: auto;
+    height: auto;
+    padding-left: 20px;
+
+}
+
+.profile-image-box{
+    width: 300px;
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+    border: 1px solid #D3D2D7;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+.profile-image-box-upper{
+    width: auto;
+    height: 150px;
+    background-color: #FAA71B;
+    
+}
+
+.profile-image{
+    width: 130px;
+    height: 130px;;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 80px;
+    left: 85px;
+    border: 1px solid #D3D2D7;
+    
+}
+
+.profile-image-box-bottom-name{
+   position: absolute;
+    top: 240px;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+}
+
+.profile-image-box-bottom-description{
+    position: absolute;
+    top: 300px;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 200px;
+    font-size: 13px;
+}
+
+input[type="text"]:enabled{
+    font-family: "exo2";
+    width: 300px;
+    height: 40px;
+    border: 1px solid #D3D2D7;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+input[type="text"]:disabled{
+    background-color:transparent;
+    
+}
+
+.description-box{
+    position:relative;
+
+}
+
+label[for="description"]{
+    position: absolute;
+
+}
+
+.description-input{
+    position: absolute;
+    left: 165px;
+}
+
+.description-input:disabled{
+    background-color: transparent;
+    resize: none;
+    border: none;
+}
+
+
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload{
+    position:  relative;
+    top: 70px;
+    display: inline-block;
+    width: 670px;
+}
+.image-upload-label{
+    display: inline-block;
+  width: 165px;   
+}
+.attach-doc
+{
+    cursor: pointer;
+}
+
+label[for="file-input"]{
+    width: 100px;
+}
+
+.profile-edit-button{
+    width: 100px;
+    height: 30px;
+    background-color: orange;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    position: absolute;
+    color: white;
+    top: 95px;
+    right: 45px;
+
+    font-size: 16px;
+    font-family: 'exo2';
+}
+
+.profile-edit-button:hover{
+    cursor: pointer;
+}
+
+.profile-form-submit{
+    position: absolute;
+    right: 45px;
+    top: 140px;
+    width: 100px;
+    height: 30px;
+    background-color: #4CAF50;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color: white;
+    font-family: 'exo2';
+     font-size: 16px;
+}
+
+.profile-form-submit:hover{
+    cursor: pointer;
+}
+.profile-cancel-button{
+      width: 100px;
+    height: 30px;
+    background-color: orangered;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    position: absolute;
+    color: white;
+    top: 95px;
+    right: 45px;
+    font-size: 16px;
+    font-family: 'exo2';
+}
+
+.profile-cancel-button:hover{
+    cursor: pointer;
+}

@@ -1,12 +1,17 @@
 package com.tp.jpa;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.tp.serializers.UsersEntitySerializer;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Ivan on 22.4.2018..
  */
+@JsonSerialize(using = UsersEntitySerializer.class)
 @Entity
-@Table(name = "USERS", schema = "dbo", catalog = "TravelPlanner")
+@Table(name = "USERS")
 public class UsersEntity {
     private int userId;
     private String username;
@@ -15,9 +20,14 @@ public class UsersEntity {
     private String lastName;
     private String email;
     private String address;
+    private boolean active;
+    private byte[] userImage;
+    private String description;
+    private Set<TripEntity> trips;
 
     @Id
     @Column(name = "USER_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getUserId() {
         return userId;
     }
@@ -86,33 +96,43 @@ public class UsersEntity {
         this.address = address;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UsersEntity that = (UsersEntity) o;
-
-        if (userId != that.userId) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-
-        return true;
+    @Lob
+    @Column(name = "USERIMAGE")
+    public byte[] getUserImage() {
+        return userImage;
     }
 
-    @Override
-    public int hashCode() {
-        int result = userId;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        return result;
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
+    }
+
+    @Basic
+    @Column(name = "ACTIVE")
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Basic
+    @Column(name = "DESCRIPTION")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "USERTRIPS", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns = {@JoinColumn(name = "TRIP_ID")})
+    public Set<TripEntity> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Set<TripEntity> trips) {
+        this.trips = trips;
     }
 }

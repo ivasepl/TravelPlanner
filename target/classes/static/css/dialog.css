@@ -1,0 +1,146 @@
+.trip-dialog-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 450px;
+    height: 600px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 0;
+}
+
+.trip-dialog-box-header{
+    width: 100%;
+    height: 65px;
+    background-color: #FAA71B; 
+}
+
+.trip-dialog-box-header-title{
+    color: white;
+    font-size: 30px;
+    padding-top: 15px;
+    padding-left: 30px;
+}
+
+.trip-dialog-box-middle{
+    width: 100%;
+    height: 465px;
+}
+
+
+.trip-dialog-box-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+}
+
+.add-button-dialog{
+    position: absolute;
+    right: 140px;
+    bottom: 10px;
+    width: 120px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+     background-color: #4CAF50;
+         color: white;
+    font-size: 20px;
+}
+
+.cancel-button-dialog{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 120px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+   background-color: orangered;
+    color: white;
+    font-size: 20px;
+}
+
+.dialog-label{
+    padding-left: 15px;
+    display: inline-block;
+    width: 100px;
+}
+
+.details-box{
+    position:relative;
+
+}
+
+label[for="details"]{
+    padding-left: 15px;
+    position: absolute;
+
+}
+
+.dialog-details-input{
+    position: absolute;
+    left: 130px;
+    resize: none;
+    border-radius: 5px;
+    border: 1px solid #D3D2D7;
+}
+
+.trip-delete-dialog-box{
+       position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 250px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 0;
+}
+
+.trip-delete-dialog-box-header{
+    width: 100%;
+    height: 65px;
+    background-color: #FAA71B; 
+}
+
+.trip-delete-dialog-box-header-title{
+    color: white;
+    font-size: 30px;
+    padding-top: 15px;
+    padding-left: 30px;
+}
+
+.trip-delete-dialog-box-bottom{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+}
+
+.trip-delete-dialog-box-middle{
+    width: 100%;
+    height: 115px;
+}
+
+.trip-delete-dialog-box-middle-body{
+    text-align: center;
+    padding-top: 40px;
+    font-size: 20px;
+}
+
+.delete-button-dialog{
+    position: absolute;
+    right: 140px;
+    bottom: 10px;
+    width: 120px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+     background-color: #4CAF50;
+         color: white;
+    font-size: 20px;
+}
