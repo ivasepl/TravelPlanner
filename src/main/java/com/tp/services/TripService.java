@@ -6,4 +6,5 @@ public interface TripService {
     TripEntity findByTripId(Integer id);
     void saveTrip(TripEntity tripEntity);
     void updateTrip(TripEntity tripEntity);
+    void deleteTrip(Integer id);
 }

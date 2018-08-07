@@ -18,11 +18,16 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public void saveTrip(TripEntity tripEntity) {
-            tripRepository.save(tripEntity);
+        tripRepository.save(tripEntity);
     }
 
     @Override
     public void updateTrip(TripEntity tripEntity) {
-            tripRepository.save(tripEntity);
+        tripRepository.save(tripEntity);
+    }
+
+    @Override
+    public void deleteTrip(Integer id) {
+        tripRepository.deleteById(id);
     }
 }
