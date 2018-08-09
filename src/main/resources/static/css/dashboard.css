@@ -327,56 +327,6 @@ html{
     text-align: center;
 }
 
-.upcoming-events{
-
-    position: absolute;
-    display: inline-block;
-    right: 40px;
-    top: 200px;
-    border: 1px solid darkgray;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.upcoming-events-title{
-    padding: 10px;
-    font-size: 30px;
-    color: white;
-    background-color: orange;
-
-}
-
-.next-event-box{
-    width: 230px;
-    height: 300px;
-    border-radius: 10px;
-    border: 1px solid darkgrey;
-    float: left;
-    margin: 20px;
-    overflow: hidden;
-}
-
-.next-event-upper{
-    padding-left: 10px;
-    font-size: 15px;
-    width: auto;
-    height: 225px;
-    color: darkgrey;
-    box-sizing: border-box;
-    border-bottom: 1px solid darkgrey;
-}
-
-.next-event-bottom{
-    color: white;
-    font-size: 30px;
-    width: auto;
-    height: 75px;
-    text-align: center;
-    background-color: orange;
-
-    padding-top: 20px;
-    box-sizing: border-box;
-}
 
 #map {
     height: 100%;

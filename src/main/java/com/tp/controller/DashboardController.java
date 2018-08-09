@@ -291,37 +291,37 @@ public class DashboardController {
 
     private String getSeasonName(Calendar cal) {
         switch (cal.get(Calendar.MONTH)) {
+            case 0:
             case 1:
-            case 2:
                 return WINTER;
-            case 3:
+            case 2:
                 if (cal.get(Calendar.DAY_OF_MONTH) >= 21) {
                     return SPRING;
                 } else {
                     return WINTER;
                 }
+            case 3:
             case 4:
-            case 5:
                 return SPRING;
-            case 6:
+            case 5:
                 if (cal.get(Calendar.DAY_OF_MONTH) >= 21) {
                     return SUMMER;
                 } else {
                     return SPRING;
                 }
+            case 6:
             case 7:
-            case 8:
                 return SUMMER;
-            case 9:
+            case 8:
                 if (cal.get(Calendar.DAY_OF_MONTH) >= 23) {
                     return AUTUMN;
                 } else {
                     return SUMMER;
                 }
+            case 9:
             case 10:
-            case 11:
                 return AUTUMN;
-            case 12:
+            case 11:
                 if (cal.get(Calendar.DAY_OF_MONTH) >= 21) {
                     return WINTER;
                 } else {

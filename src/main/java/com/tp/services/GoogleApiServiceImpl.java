@@ -47,7 +47,6 @@ public class GoogleApiServiceImpl implements GoogleApiService {
                 if (latNode != null && lngNode != null) {
                     addressEntity = new AddressEntity();
                     addressEntity.setAddress(address);
-                    addressEntity.getTrip().add(tripEntity);
                     if (addressEntity.getTrip() == null) {
                         Set set = new HashSet();
                         set.add(tripEntity);

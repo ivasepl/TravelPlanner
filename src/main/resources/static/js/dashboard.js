@@ -520,9 +520,45 @@ function loadTable() {
 }
 
 function loadStatistic(){
+    var ctx = $("#chart");
     $.ajax({
         url: "http://localhost:8080/api/statistic"
     }).then(function (value) {
         console.log(value);
+        var keys = Object.keys(value);
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [keys[0], keys[1], keys[2], keys[3]],
+                datasets: [{
+                    label: '# of Trips',
+                    data: [value[keys[0]], value[keys[1]], value[keys[2]], value[keys[3]]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+
+
+        });
     });
 }
