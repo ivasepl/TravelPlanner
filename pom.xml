@@ -52,22 +52,8 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- BOOTSTRAP -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>3.3.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<!-- CONTEXT SUPPORT (EMAIL) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>3.0.5.RELEASE</version>
-		</dependency>
+
+
 		<!--BOOT DEVTOOLS (hotswap static content) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,23 +61,8 @@
 			<optional>true</optional>
 		</dependency>
 
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
-		</dependency>
-		<!-- BOOSTRAP NOTIFY -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap-notify</artifactId>
-			<version>3.1.3</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/log4j/log4j -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

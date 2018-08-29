@@ -5,6 +5,7 @@ import com.tp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,13 +23,14 @@ public class UserDetailsServiceImpl implements UserDetailsService
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException
+    public UserDetails loadUserByUsername(final String username)
+                                            throws UsernameNotFoundException
     {
 
         if(username.isEmpty()){
             throw new UsernameNotFoundException("Username cannot be empty!");
         }
-        final UsersEntity user = this.userService.findByUsername(username);
+        final UsersEntity user = userService.findByUsername(username);
         final List<GrantedAuthority> grantedAuths = new ArrayList<>();
         if (user == null)
         {
@@ -37,7 +39,7 @@ public class UserDetailsServiceImpl implements UserDetailsService
         else
         {
             grantedAuths.add(new SimpleGrantedAuthority(ROLE_USER));
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuths);
+            return new User(user.getUsername(), user.getPassword(), grantedAuths);
         }
 
     }
